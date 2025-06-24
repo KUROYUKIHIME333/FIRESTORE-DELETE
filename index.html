@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Firebase | Supprimeur de Docs</title>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png"
+            sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="stylesheet" href="style.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <div class="logo"> <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="45" fill="none"
+                            stroke="#00c0ff" stroke-width="3"
+                            stroke-dasharray="10 5">
+                            <animatetransform attributeName="transform"
+                                attributeType="XML" type="rotate" from="0 50 50"
+                                to="360 50 50" dur="20s"
+                                repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="50" cy="50" r="20" fill="#010c14"
+                            stroke="#00ff66" stroke-width="2" />
+                        <path d="M40 45 L50 55 L60 45 M50 55 L50 75"
+                            stroke="#00ff66" stroke-width="4"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <animatetransform attributeName="transform"
+                                attributeType="XML" type="translate"
+                                values="0 0; 0 -5; 0 0" dur="1.5s"
+                                repeatCount="indefinite" additive="sum" />
+                        </path>
+                        <text x="50" y="30" font-size="12" fill="#00ff66"
+                            text-anchor="middle" font-weight="bold">
+                            FBP
+                        </text>
+                        <text x="50" y="85" font-size="10" fill="#00c0ff"
+                            text-anchor="middle">
+                            PURGE
+                        </text>
+                    </svg>
+                </div> <p class="subtitle">Outil de suppression de documents par
+                    requête pour le développement</p>
+            </header>
+
+            <div class="warning-box">
+                <p><strong>ALERTE SÉCURITÉ :</strong> Cet outil est
+                    **UNIQUEMENT** pour le **DÉVELOPPEMENT LOCAL**. N'utilisez
+                    **JAMAIS** cette interface en production ou avec des données
+                    sensibles. Les suppressions sont permanentes.</p>
+                <p>Le SDK Admin ne peut être utilisé de manière sécurisée que
+                    via une Cloud Function Firebase.</p>
+                <p>De plus, nous déclinons toute responsabilité quant à tout
+                    incident qui pourrait survenir à vous ou à vos données suite
+                    à l'utilisation de cet outil.</p>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="sdkType">Type de SDK :</label>
+                    <div class="radio-group">
+                        <input type="radio" id="clientSdk" name="sdkType"
+                            value="client" checked>
+                        <label for="clientSdk">Client SDK (Direct
+                            Browser)</label>
+                        <input type="radio" id="adminSdk" name="sdkType"
+                            value="admin">
+                        <label for="adminSdk">Admin SDK (via Cloud
+                            Function)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firebaseConfigInput">Collez votre configuration
+                        Firebase (Client SDK) :</label>
+                    <textarea id="firebaseConfigInput" rows="7"
+                        placeholder='Ex: const firebaseConfig = { apiKey: "YOUR_API_KEY", projectId: "YOUR_PROJECT_ID", ... };'></textarea>
+                    <p class="help-text">Configuration pour l'initialisation
+                        côté client. Ne contient pas les clés admin.</p>
+                </div>
+
+                <div class="form-group" id="callableFunctionNameGroup"
+                    style="display: none;">
+                    <label for="callableFunctionName">Nom de la Cloud Function
+                        Callable (Admin SDK) :</label>
+                    <input type="text" id="callableFunctionName"
+                        placeholder="Ex: deleteDocumentsByQuery">
+                    <p class="help-text">Nom de la fonction déployée qui utilise
+                        le SDK Admin.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="collectionName">Nom de la Collection :</label>
+                    <input type="text" id="collectionName"
+                        placeholder="Ex: utilisateurs_tests">
+                </div>
+
+                <div class="form-group">
+                    <label for="fieldName">Champ de Critère :</label>
+                    <input type="text" id="fieldName" placeholder="Ex: statut">
+                </div>
+
+                <div class="form-group">
+                    <label for="fieldValue">Valeur du Champ :</label>
+                    <input type="text" id="fieldValue"
+                        placeholder="Ex: inactif ou 123 ou true">
+                </div>
+
+                <div class="form-group">
+                    <label for="fieldValueType">Type de la Valeur :</label>
+                    <select id="fieldValueType">
+                        <option value="string">Chaîne de caractères
+                            (String)</option>
+                        <option value="number">Nombre (Number)</option>
+                        <option value="boolean">Booléen (Boolean: 'true' ou
+                            'false')</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="centré">
+                <button id="deleteButton" class="action-button">Démarrer la
+                    Purge</button>
+            </div>
+
+            <div id="message" class="message-box"></div>
+        </div>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

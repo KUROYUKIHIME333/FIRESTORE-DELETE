@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100"><svg viewBox="0 0 100 100" class="logo-svg">
+	<!-- Cercle extérieur (base de données / conteneur) -->
+	<circle cx="50" cy="50" r="45" fill="none" stroke="#00c0ff" stroke-width="3" stroke-dasharray="10 5">
+		<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"></animateTransform>
+	</circle>
+	<!-- Centre de données / cible -->
+	<circle cx="50" cy="50" r="20" fill="#010c14" stroke="#00ff66" stroke-width="2"></circle>
+	<!-- Icône de purge/nettoyage (une sorte de flèche ou de "clear") -->
+	<path d="M40 45 L50 55 L60 45 M50 55 L50 75" stroke="#00ff66" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+		<animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -5; 0 0" dur="1.5s" repeatCount="indefinite" additive="sum"></animateTransform>
+	</path>
+	<!-- Texte "FBP" et "PURGE" -->
+	<text x="50" y="30" font-size="12" fill="#00ff66" text-anchor="middle" font-weight="bold">
+		FBP
+	</text>
+	<text x="50" y="85" font-size="10" fill="#00c0ff" text-anchor="middle">
+		PURGE
+	</text>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
