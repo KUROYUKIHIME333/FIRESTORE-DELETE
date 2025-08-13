@@ -1,6 +1,7 @@
 # Firestore Delete (FBP PURGE)
 
 Outil web pour supprimer rapidement des documents d'une collection Firestore selon un critère, à utiliser uniquement en développement local.
+[Firebase | Supprimeur de Docs](https://firestore-delete.onrender.com/) est également accessible en ligne, et attend vos retours et commentaires.
 
 ## Fonctionnalités
 - Suppression en masse de documents Firestore selon un champ et une valeur donnée.
